@@ -9,16 +9,17 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        GeometryReader { geometry in
+            ZStack {
+                ForEach(1..<6){ i in
+                    CardView(proxy: geometry, imageName: "image\(i)", index: i-1)
+                }
+            }
         }
-        .padding()
     }
 }
 
 #Preview {
     ContentView()
 }
+
