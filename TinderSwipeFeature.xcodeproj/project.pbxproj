@@ -12,6 +12,7 @@
 		B4F178FC2C6352610018E7FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4F178FB2C6352610018E7FF /* Assets.xcassets */; };
 		B4F178FF2C6352610018E7FF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4F178FE2C6352610018E7FF /* Preview Assets.xcassets */; };
 		B4F179062C6390400018E7FF /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F179052C6390400018E7FF /* CardView.swift */; };
+		B4F179082C63DA180018E7FF /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F179072C63DA180018E7FF /* HomeViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		B4F178FB2C6352610018E7FF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B4F178FE2C6352610018E7FF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B4F179052C6390400018E7FF /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		B4F179072C63DA180018E7FF /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 				B4F178F72C6352600018E7FF /* TinderSwipeFeatureApp.swift */,
 				B4F178F92C6352600018E7FF /* ContentView.swift */,
 				B4F179052C6390400018E7FF /* CardView.swift */,
+				B4F179072C63DA180018E7FF /* HomeViewModel.swift */,
 				B4F178FB2C6352610018E7FF /* Assets.xcassets */,
 				B4F178FD2C6352610018E7FF /* Preview Content */,
 			);
@@ -143,6 +146,7 @@
 				B4F178FA2C6352600018E7FF /* ContentView.swift in Sources */,
 				B4F179062C6390400018E7FF /* CardView.swift in Sources */,
 				B4F178F82C6352600018E7FF /* TinderSwipeFeatureApp.swift in Sources */,
+				B4F179082C63DA180018E7FF /* HomeViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

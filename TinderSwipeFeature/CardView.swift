@@ -12,12 +12,19 @@ struct CardView: View {
     @GestureState var degrees: Double = 0
     let proxy: GeometryProxy
     let imageName: String
-    let index: Int
+    @ObservedObject var vm: HomeViewModel
+    @State var dragDirection: DragDirection = .none
     
-    init(proxy: GeometryProxy, imageName: String,index: Int) {
+    enum DragDirection {
+        case right
+        case left
+        case none
+    }
+    
+    init(proxy: GeometryProxy, imageName: String, vm: HomeViewModel) {
         self.proxy = proxy
         self.imageName = imageName
-        self.index = index
+        self.vm = vm
     }
     
     var body: some View {
@@ -26,18 +33,40 @@ struct CardView: View {
                 state = value.translation
             }
             .updating($degrees) { (value, state, _) in
-                state = value.translation.width > 0 ? 2 : -2
+                state = value.translation.width > 0 ? 10 : -10
+            }
+            .onChanged { value in
+                if value.translation.width > 0 {
+                    dragDirection = .right
+                }else if value.translation.width < 0 {
+                    dragDirection = .left
+                }
             }
             .onEnded { value in
-                
+                if proxy.size.width*0.7 <= abs(value.translation.width) {
+                    self.vm.deleteOnSwipe()
+                }
             }
-        
         Rectangle()
             .overlay {
-                Image(imageName)
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .clipped()
+                GeometryReader { geo in
+                    ZStack {
+                        Image(imageName)
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .clipped()
+                        Image(systemName: dragDirection == .right ? "heart.circle" : "xmark.circle")
+                            .resizable()
+                            .foregroundStyle(dragDirection == .right ? Color.green : Color.red)
+                            .frame(width: 80,height: 80)
+                            .opacity(abs(traslation.width) > 0 ? 1 : 0)
+                    }
+                    .position(
+                        x: geo.frame(in: .local).midX,
+                        y: geo.frame(in: .local).midY
+                    )
+                    
+                }
             }
             .cornerRadius(10)
             .frame(
@@ -45,8 +74,8 @@ struct CardView: View {
                 maxHeight: proxy.size.height*0.8
             )
             .position(
-                x: proxy.frame(in: .global).midX - CGFloat(index * 1),
-                y: proxy.frame(in: .global).midY - 100 - CGFloat(index * 2)
+                x: proxy.frame(in: .global).midX ,
+                y: proxy.frame(in: .global).midY - 100
             )
             .offset(x: traslation.width,y: 0)
             .rotationEffect(.degrees(degrees))
@@ -57,6 +86,6 @@ struct CardView: View {
 
 #Preview {
     GeometryReader { proxy in
-        CardView(proxy: proxy, imageName: "image1", index: 0)
+        CardView(proxy: proxy, imageName: "image1", vm: HomeViewModel())
     }
 }

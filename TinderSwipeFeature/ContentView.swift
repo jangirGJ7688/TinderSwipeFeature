@@ -8,11 +8,15 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject var vm: HomeViewModel = HomeViewModel()
+    
     var body: some View {
         GeometryReader { geometry in
-            ZStack {
-                ForEach(1..<6){ i in
-                    CardView(proxy: geometry, imageName: "image\(i)", index: i-1)
+            VStack {
+                ZStack {
+                    ForEach(vm.images,id: \.self) { image in
+                        CardView(proxy: geometry, imageName: image, vm: vm)
+                    }
                 }
             }
         }
